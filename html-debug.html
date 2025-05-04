@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 调试接口</title>
+</head>
+
+<body>
+  <script>
+    // 获取 URL 参数
+    function getParameterByName(name, url = window.location.href) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g,''));
+    }
+
+    const htmlcode = getParameterByName('htmlcode');
+    if (htmlcode) {
+      document.body.innerHTML = htmlcode;
+    } else {
+      document.body.innerHTML = '<p>HTML 调试接口，在链接里添加 ?htmlcode=你的HTML代码 就能在线预览和调试。</p>';
+    }
+  </script>
+</body>
+
+</html>
