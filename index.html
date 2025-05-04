@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晨雾㐅是只屑的小破窝</title>
+  <style>
+    /* 全局样式 */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* 头部导航栏样式 */
+    header {
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #e0e0e0;
+    }
+
+    /* 横幅样式 */
+   .banner {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('your-banner-image.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+   .banner h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+   .banner p {
+      font-size: 18px;
+      max-width: 800px;
+    }
+
+    /* 内容区样式 */
+   .content {
+      padding: 80px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+   .content h2 {
+      color: #333;
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+   .content p {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    /* 特色服务区样式 */
+   .services {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+   .service-item {
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin-bottom: 40px;
+      transition: transform 0.3s ease;
+    }
+
+   .service-item:hover {
+      transform: translateY(-5px);
+    }
+
+   .service-item i {
+      font-size: 48px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    /* 图片展示区样式 */
+   .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 80px 0;
+    }
+
+   .image-gallery img {
+      width: 300px;
+      height: 200px;
+      margin: 10px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 底部信息区样式 */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部导航栏 -->
+  <header>
+    <nav>
+      <div>
+        <h1>晨雾的小破窝</h1>
+      </div>
+      <ul>
+        <li><a href="/">首页</a></li>
+        <li><a href="#services">更多</a></li>
+        <li><a href="https://chenwumm.github.io/about.html">关于</a></li>
+        <li><a href="https://chenwumm.github.io/connact">联系</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 横幅 -->
+  <section class="banner">
+    <h1>欢迎来到晨雾的小破窝</h1>
+    <p>这是晨雾的分站，主站请移步<a href="https://chenwumm.github.io/">晨雾博客</a></p>
+  </section>
+
+  <!-- 内容区 -->
+  <section class="content">
+    <h2>晨雾的小破窝</h2>
+    <center><p>这是晨雾的分站，主要用于测试。</p></center>
+  </section>
+
+  <!-- 特色服务区 -->
+  <center id="services"><h1>更多</h1></center>
+  <section class="services">
+    <div class="service-item">
+      <i class="fas fa-laptop"></i>
+      <h3>晨雾静态网站托管服务</h3>
+      <p>暂时还未开发!</p>
+    </div>
+    <div class="service-item">
+      <i class="fas fa-camera"></i>
+      <h3>HTML调试接口</h3>
+      <p><a href="/html-debug.html">点击前往</a></p>
+    </div>
+    <div class="service-item">
+      <i class="fas fa-users"></i>
+      <h3>在线网页编辑器</h3>
+      <p><a href="/webpage-edit.html">点击前往</a></p>
+    </div>
+  </section>
+  <!-- 底部信息区 -->
+  <footer>
+    <p>&copy; 2025 网站版权所有 | 联系邮箱: 496163862@qq.com</p>
+  </footer>
+</body>
+
+  </html>
