@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GNU ed 学习笔记</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>GNU ed 学习笔记</h1>
+  </header>
+
+  <section class="intro">
+    <blockquote>
+      GNU ed 是一个面向行的文本编辑器，可用于交互式地或通过 shell 脚本创建、显示、修改或以其他方式操作文本文件。ed 的受限版本 sed 仅能编辑当前目录中的文件，且无法执行 shell 命令。从它是 Unix 系统的原始编辑器这一意义来讲，ed 是“标准”文本编辑器，因此其使用及其广泛，不过，对于大多数用途而言，它已被诸如 GNU Emacs 或 GNU Moe 这类全屏编辑器所取代……
+      <footer>—— ed 帮助信息开头</footer>
+    </blockquote>
+
+    <blockquote>
+      ed 是 Unix 系统原始行导向文本编辑器，通过命令行操作文本文件。与 Emacs、Vim 等全屏编辑器不同，ed 以行为单位处理文本，所有操作通过命令完成，适合脚本自动化或轻量级文本修改。
+      <footer>—— 豆包（ed 编辑器概述）</footer>
+    </blockquote>
+  </section>
+
+  <main>
+    <section id="basic-usage">
+      <h2>一、基本用法</h2>
+
+      <h3>1、启动 ed</h3>
+      <ul>
+        <li><strong>打开文件：</strong><code>ed 文件名.txt</code>（若文件不存在则创建新文件并编辑）</li>
+        <li><strong>编辑命令输出：</strong><code>ed !命令</code></li>
+        <li><strong>不打开任何文件：</strong><code>ed</code></li>
+      </ul>
+
+      <h3>2、基本命令</h3>
+      <dl>
+        <dt><code>i</code></dt>
+        <dd>插入：在当前位置插入文本。插入完成后输入 <code>.</code> 并回车退出插入模式。</dd>
+
+        <dt><code>a</code></dt>
+        <dd>追加：在文件末尾追加文本（用法同 <code>i</code>）。</dd>
+
+        <dt><code>w</code></dt>
+        <dd>保存：首次保存需指定文件名，例如：<code>w test.txt</code>。</dd>
+
+        <dt><code>q</code></dt>
+        <dd>退出：若文件未修改可直接退出。</dd>
+
+        <dt><code>wq</code></dt>
+        <dd>保存并退出。</dd>
+
+        <dt><code>q!</code></dt>
+        <dd>强制退出，不保存更改。</dd>
+      </dl>
+
+      <h4>行号与范围指定</h4>
+      <ul>
+        <li><code>=</code>：打印总行数。</li>
+        <li><code>$</code>：最后一行（跳转到最后一行）。</li>
+        <li><code>n</code>：跳转到第 n 行。</li>
+        <li><code>+n</code> / <code>-n</code>：当前行前/后第 n 行。</li>
+        <li>示例：<code>1,$</code> 表示从第一行到最后一行；<code>.,$</code> 表示从当前行到末尾。</li>
+      </ul>
+
+      <h4>删除行</h4>
+      <ul>
+        <li><code>nd</code>：删除第 n 行。</li>
+        <li><code>n,xd</code>：删除第 n 行到第 x 行。</li>
+        <li><code>.d</code>：删除当前行。</li>
+        <li><code>,d</code>：删除全部行。</li>
+      </ul>
+
+      <h4>替换文本</h4>
+      <p>语法：<code>[范围]s/old/new/[标志]</code></p>
+      <ul>
+        <li>无标志：仅替换每行第一个匹配项。</li>
+        <li><code>g</code>：替换每行所有匹配项。</li>
+        <li><code>i</code>：忽略大小写。</li>
+      </ul>
+      <p>示例：<code>1,$s/foo/bar/g</code> —— 全文替换所有 "foo" 为 "bar"。</p>
+
+      <h4>修改行</h4>
+      <ul>
+        <li><code>nc</code>：修改第 n 行（输入新内容，以 <code>.</code> 结束）。</li>
+      </ul>
+
+      <h4>搜索（查找）</h4>
+      <ul>
+        <li><code>?pattern?</code>：向上查找第一个匹配 "pattern" 的行。</li>
+        <li><code>/pattern/</code>：向下查找第一个匹配 "pattern" 的行。</li>
+        <li><code>?pattern?n</code> 或 <code>/pattern/n</code>：向上/下查找第 n 个匹配项。</li>
+      </ul>
+
+      <h4>复制与粘贴</h4>
+      <ul>
+        <li><code>[范围]n寄存器名</code>：将指定行复制到寄存器（如 <code>1,5mk</code> 把第1-5行复制到寄存器 k）。</li>
+        <li><code>p寄存器名</code>：在当前行后粘贴寄存器中的内容（如 <code>pk</code>）。</li>
+      </ul>
+    </section>
+
+    <section id="advanced-features">
+      <h2>二、高级功能</h2>
+
+      <h3>1、执行 shell 命令</h3>
+      <ul>
+        <li><code>!命令</code>：在 ed 中执行 shell 命令。</li>
+        <li><code>[范围]!命令</code>：在指定行后插入命令输出结果。</li>
+      </ul>
+
+      <h3>2、执行 ed 脚本</h3>
+      <ul>
+        <li><strong>普通执行：</strong><code>ed -s 脚本名</code></li>
+        <li><strong>静默执行：</strong><code>ed -s 文件名 &lt; 脚本名</code></li>
+      </ul>
+      <p>示例脚本内容：</p>
+      <pre><code>i
+Hello, World!
+.
+w helloworld.txt
+q</code></pre>
+
+      <h3>3、正则表达式高级用法</h3>
+      <ul>
+        <li><code>*</code>：匹配任意字符 0 次或多次。</li>
+        <li><code>[abc]</code>：匹配 a、b、c 中任意一个字符。</li>
+        <li><code>^pattern</code>：匹配以 pattern 开头的行。</li>
+        <li><code>pattern$</code>：匹配以 pattern 结尾的行。</li>
+      </ul>
+    </section>
+  <p>手写笔记(扫描全能王 扫描)</p>
+  <img src="./pic/ed/ed1.jpg">
+  <img src="./pic/ed/ed2.jpg">
+  <img src="./pic/ed/ed3.jpg">
+  <img src="./pic/ed/ed4.jpg">
+  </main>
+
+  <footer>
+    <p>© 2025 GNU ed 学习笔记 | 适用于 Unix/Linux 用户入门参考 | 晨雾㐅是只屑 | 2025年8月9日</p>
+  </footer>
+</body>
+</html>

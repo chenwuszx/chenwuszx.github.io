@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vim 学习笔记</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Vim 学习笔记</h1>
+  </header>
+
+  <main>
+    <section id="introduction">
+      <h2>一、Vim简介</h2>
+      <p>Vim是 Vi IMprovvim (Vi改进版)的缩写，Vim以其强大的文本处理能力和高效的编辑操作而闻名，被许多开发者视为程序员的"瑞士军刀"。</p>
+    </section>
+
+    <section id="startup">
+      <h2>二、启动方法</h2>
+      <ul>
+        <li><code>vim</code> 不打开任何文件，直接启动。</li>
+        <li><code>vim 文件名</code> 打开文件。</li>
+      </ul>
+    </section>
+
+    <section id="modes">
+      <h2>三、Vim的几种模式</h2>
+      <p>Vim有几种不同模式，包括：普通模式、插入模式、可视模式和命令模式。</p>
+
+      <h3>1、普通模式</h3>
+      <p>普通模式是Vim的默认模式。用法:</p>
+      <dl>
+        <dt>上、下、左、右移动光标</dt>
+        <dd><code>h</code> (左), <code>j</code> (下), <code>k</code> (上), <code>l</code> (右)</dd>
+
+        <dt>跳转</dt>
+        <dd>文件开头: <code>gg</code></dd>
+        <dd>文件末尾: <code>G</code></dd>
+        <dd>第n行: <code>nG</code> (按住数字键再按G)</dd>
+
+        <dt>搜索</dt>
+        <dd><code>/text</code> 正向搜索</dd>
+        <dd><code>?text</code> 反向搜索</dd>
+      </dl>
+
+      <h3>2、插入模式</h3>
+      <dl>
+        <dt><code>i</code></dt>
+        <dd>在光标位置前插入</dd>
+
+        <dt><code>I</code></dt>
+        <dd>在当前行行首插入</dd>
+
+        <dt><code>a</code></dt>
+        <dd>在光标位置后插入</dd>
+
+        <dt><code>A</code></dt>
+        <dd>在当前行行尾插入</dd>
+
+        <dt><code>o</code></dt>
+        <dd>在当前行的下方插入新行</dd>
+
+        <dt><code>O</code></dt>
+        <dd>在当前行的上方插入新行</dd>
+      </dl>
+
+      <h3>3、可视模式</h3>
+      <dl>
+        <dt><code>v</code></dt>
+        <dd>字符可视模式</dd>
+
+        <dt><code>V</code></dt>
+        <dd>行可视模式</dd>
+
+        <dt><code>Ctrl+v</code></dt>
+        <dd>块可视模式</dd>
+      </dl>
+
+      <h3>4、命令模式</h3>
+      <p>在 Vim 中输入 <code>:</code> 进入命令行模式。</p>
+      <dl>
+        <dt><code>:w(文件名)</code></dt>
+        <dd>保存</dd>
+
+        <dt><code>:q</code></dt>
+        <dd>退出</dd>
+
+        <dt><code>:q!</code></dt>
+        <dd>强制退出</dd>
+
+        <dt><code>:wq</code></dt>
+        <dd>保存并退出</dd>
+
+        <dt><code>:e(文件名)</code></dt>
+        <dd>打开或重载指定文件</dd>
+
+        <dt><code>:r(文件名)</code></dt>
+        <dd>将指定文件内容插入到当前光标位置</dd>
+
+        <dt><code>:行号</code></dt>
+        <dd>跳到指定行号</dd>
+
+        <dt><code>:$</code></dt>
+        <dd>跳到最后一行</dd>
+
+        <dt><code>:0</code></dt>
+        <dd>跳到第一行</dd>
+
+        <dt><code>:+n</code></dt>
+        <dd>向下跳n行</dd>
+
+        <dt><code>:-n</code></dt>
+        <dd>向上跳n行</dd>
+
+        <dt><code>:%s/pattern/replacement/g</code></dt>
+        <dd>全文替换</dd>
+
+        <dt><code>:s/pattern/replacement/g</code></dt>
+        <dd>本行替换</dd>
+
+        <dt><code>:split</code></dt>
+        <dd>水平分屏</dd>
+
+        <dt><code>:vsplit</code></dt>
+        <dd>垂直分屏</dd>
+
+        <dt><code>:set nu</code></dt>
+        <dd>显示行号</dd>
+
+        <dt><code>:set nonu</code></dt>
+        <dd>隐藏行号</dd>
+
+        <dt><code>:set tabstop=n</code></dt>
+        <dd>设置缩进宽度为n个空格</dd>
+
+        <dt><code>:set shiftwidth=n</code></dt>
+        <dd>设置自动缩进宽度为n个空格</dd>
+
+        <dt><code>:set expandtab</code></dt>
+        <dd>将Tab转换为空格</dd>
+
+        <dt><code>:!命令</code></dt>
+        <dd>在Vim中执行外部命令</dd>
+
+        <dt><code>:help</code></dt>
+        <dd>帮助</dd>
+
+        <dt><code>:map [按键][命令]</code></dt>
+        <dd>键盘映射</dd>
+
+        <dt><code>:unmap [按键]</code></dt>
+        <dd>取消键盘映射</dd>
+      </dl>
+      <p>还有很多，阅读Vim官方文档查看更多。</p>
+    </section>
+
+    <section id="configuration">
+      <h2>5、Vim配置文件</h2>
+      <p>Vim配置文件通常是<code>.vimrc</code>，在家目录下。用户可以通过编辑<code>.vimrc</code>设置Vim的选项、映射按键绑定、定义颜色方案等。例:</p>
+      <pre><code>syntax on           " 语法高亮
+set number          " 显示行号
+set tabstop=4       " 设置Tab宽度
+set shiftwidth=4    " 设置自动缩进宽度
+set expandtab       " 将Tab转换为空格</code></pre>
+    </section>
+
+    <section id="basic-operations">
+      <h2>6、Vim的一些基本操作(在普通模式下)</h2>
+      <dl>
+        <dt><code>x</code></dt>
+        <dd>删除字符</dd>
+
+        <dt><code>dd</code></dt>
+        <dd>删除整行</dd>
+
+        <dt><code>yy</code></dt>
+        <dd>复制整行</dd>
+
+        <dt><code>p</code></dt>
+        <dd>粘贴 (向后)</dd>
+
+        <dt><code>P</code></dt>
+        <dd>粘贴 (向前)</dd>
+
+        <dt><code>u</code></dt>
+        <dd>撤销</dd>
+
+        <dt><code>Ctrl + r</code></dt>
+        <dd>反撤销</dd>
+      </dl>
+    </section>
+
+    <section id="windows-tabs">
+      <h2>7、多窗口及标签页编辑</h2>
+
+      <h4>窗口操作</h4>
+      <dl>
+        <dt>水平分割</dt>
+        <dd><code>:split [文件名]</code></dd>
+
+        <dt>垂直分割</dt>
+        <dd><code>:vsplit [文件名]</code></dd>
+
+        <dt>切换窗口</dt>
+        <dd><code>Ctrl+w</code>, <code>h</code>: 切换到左面的窗口</dd>
+        <dd><code>Ctrl+w</code>, <code>j</code>: 切换到下面的窗口</dd>
+        <dd><code>Ctrl+w</code>, <code>k</code>: 切换到上面的窗口</dd>
+        <dd><code>Ctrl+w</code>, <code>l</code>: 切换到右面的窗口</dd>
+
+        <dt>调整窗口大小</dt>
+        <dd><code>Ctrl+w</code> <code>+</code> 或 <code>:resize +n</code>: 增加当前窗口高度</dd>
+        <dd><code>Ctrl+w</code> <code>-</code> 或 <code>:resize -n</code>: 减少当前窗口高度</dd>
+        <dd><code>Ctrl+w</code> <code>></code> 或 <code>:vertical resize +n</code>: 增加当前窗口宽度</dd>
+        <dd><code>Ctrl+w</code> <code>&lt;</code> 或 <code>:vertical resize -n</code>: 减少当前窗口宽度</dd>
+        <dd><strong>注意</strong>: <code>n</code> 为行数或列数，不是像素数。</dd>
+
+        <dt>关闭当前窗口</dt>
+        <dd><code>:q</code> 或 <code>Ctrl+w</code>, <code>q</code></dd>
+      </dl>
+
+      <h4>标签页操作</h4>
+      <dl>
+        <dt>打开新标签页</dt>
+        <dd><code>:tabvimit [文件名]</code></dd>
+
+        <dt>切换标签页</dt>
+        <dd>上一个标签页: <code>gT</code> 或 <code>:tabprevious</code></dd>
+        <dd>下一个标签页: <code>gt</code> 或 <code>:tabnext</code></dd>
+        <dd>第n个标签页: <code>ngt</code> (n为标签页编号)</dd>
+        <dd>第一个标签页: <code>:tabfirst</code></dd>
+        <dd>最后一个标签页: <code>:tablast</code></dd>
+      </dl>
+    </section>
+
+    <section id="plugins">
+      <h2>8、插件</h2>
+      <p>以 <code>vim-plug</code> 为例。</p>
+      <ol>
+        <li>创建<code>~/.vim/autoload</code>目录(如果没有): <br><code>mkdir -p ~/.vim/autoload</code></li>
+        <li>使用curl下载plug.vim到autoload目录: <br><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></li>
+        <li>配置<code>~/.vimrc</code>，添加以下内容来配置vim-plug:
+          <pre><code>call plug#begin('~/.vim/pluggvim')
+Plug 'preservim/nerdtree' "文件浏览器
+call plug#end()</code></pre>
+        </li>
+        <li>在Vim中输入<code>:PlugInstall</code>以安装插件。</li>
+      </ol>
+      <h4>常用vim-plug命令</h4>
+      <dl>
+        <dt><code>:PlugInstall</code> / <code>:PlugUpdate</code></dt>
+        <dd>安装/更新所有已安装的插件</dd>
+
+        <dt><code>:PlugStatus</code></dt>
+        <dd>查看已安装插件状态</dd>
+
+        <dt><code>:PlugClean</code></dt>
+        <dd>删除不再使用的插件</dd>
+
+        <dt><code>:PlugUpgrade</code></dt>
+        <dd>升级Vim-plug本身</dd>
+      </dl>
+    </section>
+    <p>手写笔记(扫描全能王 扫描)</p>
+  <img src="./pic/vim/vim1.jpg">
+  <img src="./pic/vim/vim2.jpg">
+  <img src="./pic/vim/vim3.jpg">
+  <img src="./pic/vim/vim4.jpg">
+  <img src="./pic/vim/vim5.jpg">
+  <img src="./pic/vim/vim6.jpg">
+  </main>
+
+  <footer>
+    <p>© 2025 Vim 学习笔记 | 适用于 Unix/Linux 用户入门参考 | 晨雾㐅是只屑 |  2025年8月9日</p>
+  </footer>
+</body>
+</html>
