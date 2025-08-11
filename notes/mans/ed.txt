@@ -1,0 +1,150 @@
+ed 手册中文版
+ED(1)                            用户命令                           ED(1)
+ 
+名称
+ed - 行导向文本编辑器
+ 
+语法
+ed [选项] [[+行号] 文件]
+ 
+描述
+GNU ed 是一款行导向的文本编辑器。它用于创建、显示、修改文本文件，支持交互式操作和通过 shell 脚本调用。ed 的受限版本 red 只能编辑当前目录下的文件，且不能执行 shell 命令。ed 是“标准”文本编辑器，因为它是 Unix 系统最初的编辑器，因此广泛可用。不过，对于大多数用途，它已被全屏编辑器（如 GNU Emacs 或 GNU Moe）取代。
+ 
+文件名前可加 '+行号'、'+/正则表达式' 或 '+?正则表达式'，用于将当前行设置为指定行号，或匹配正则表达式“RE”的第一行或最后一行。
+ 
+环境变量 LINES 可用于设置初始窗口大小。
+ 
+选项
+-h, --help
+显示帮助信息并退出
+ 
+-V, --version
+输出版本信息并退出
+ 
+-E, --extended-regexp
+使用扩展正则表达式
+ 
+-G, --traditional
+以兼容模式运行
+ 
+-l, --loose-exit-status
+即使命令失败，也以 0 状态退出
+ 
+-p, --prompt=字符串
+使用指定字符串作为交互式提示符
+ 
+-q, --quiet, --silent
+抑制写入标准错误的诊断信息
+ 
+-r, --restricted
+以受限模式运行
+ 
+-s, --script
+抑制字节计数和“!”提示符
+ 
+-v, --verbose
+verbose 模式；相当于 'H' 命令
+ 
+--strip-trailing-cr
+去除文本行末尾的回车符
+ 
+--unsafe-names
+允许文件名中包含 1-31 的控制字符
+ 
+如果指定了“文件”，则启动编辑时读取该文件。如果“文件”以“!”开头，则读取 shell 命令的输出。
+ 
+退出状态：0 表示正常退出，1 表示环境问题（无效命令行选项、内存耗尽、命令失败等），2 表示输入文件问题（文件未找到、缓冲区已修改、I/O 错误），3 表示导致 ed 崩溃的内部一致性错误（如程序漏洞）。
+ 
+报告漏洞
+向 bug-ed@gnu.org 报告漏洞
+Ed 主页：http://www.gnu.org/software/ed/ed.html
+GNU 软件使用通用帮助：http://www.gnu.org/gethelp
+ 
+版权
+版权所有 (C) 1994 Andrew L. Moore。
+版权所有 (C) 2025 Antonio Diaz Diaz。许可证 GPLv2+：GNU GPL 版本 2 或更高版本 http://gnu.org/licenses/gpl.html
+这是自由软件：您可以自由修改和重新分发它。
+在法律允许的范围内，本软件不提供任何担保。
+ 
+另见
+ed 的完整文档以 Texinfo 手册形式维护。如果 info 和 ed 程序在您的系统上正确安装，命令
+ 
+info ed
+ 
+应能让您访问完整手册。
+ 
+GNU ed 1.22                        2025年7月                          ED(1)
+====================
+ed Manual in English.
+ed - line-oriented text editor
+ 
+SYNOPSIS
+ed [options] [[+line] file]
+ 
+DESCRIPTION
+GNU ed is a line-oriented text editor. It is used to create, display, modify and otherwise manipulate text files, both interactively and via shell scripts. A restricted version of ed, red, can only edit files in the current directory and cannot execute shell commands. Ed is the 'standard' text editor in the sense that it is the original editor for Unix, and thus widely available. For most purposes, however, it is superseded by full-screen editors such as GNU Emacs or GNU Moe.
+ 
+The file name may be preceded by '+line', '+/RE', or '+?RE' to set the current line to the line number specified or to the first or last line matching the regular expression 'RE'.
+ 
+The environment variable LINES can be used to set the initial window size.
+ 
+OPTIONS
+-h, --help
+display this help and exit
+ 
+-V, --version
+output version information and exit
+ 
+-E, --extended-regexp
+use extended regular expressions
+ 
+-G, --traditional
+run in compatibility mode
+ 
+-l, --loose-exit-status
+exit with 0 status even if a command fails
+ 
+-p, --prompt=STRING
+use STRING as an interactive prompt
+ 
+-q, --quiet, --silent
+suppress diagnostics written to stderr
+ 
+-r, --restricted
+run in restricted mode
+ 
+-s, --script
+suppress byte counts and '!' prompt
+ 
+-v, --verbose
+be verbose; equivalent to the 'H' command
+ 
+--strip-trailing-cr
+strip carriage returns at end of text lines
+ 
+--unsafe-names
+allow control characters 1-31 in file names
+ 
+Start edit by reading in 'file' if given. If 'file' begins with a '!', read output of shell command.
+ 
+Exit status: 0 for a normal exit, 1 for environmental problems (invalid command-line options, memory exhausted, command failed, etc), 2 for problems with the input file (file not found, buffer modified, I/O errors), 3 for an internal consistency error (e.g., bug) which caused ed to panic.
+ 
+REPORTING BUGS
+Report bugs to bug-ed@gnu.org
+Ed home page: http://www.gnu.org/software/ed/ed.html
+General help using GNU software: http://www.gnu.org/gethelp
+ 
+COPYRIGHT
+Copyright (C) 1994 Andrew L. Moore.
+Copyright (C) 2025 Antonio Diaz Diaz. License GPLv2+: GNU GPL version 2 or later http://gnu.org/licenses/gpl.html
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+ 
+SEE ALSO
+The full documentation for ed is maintained as a Texinfo manual. If the info and ed programs are properly installed at your site, the command
+ 
+info ed
+ 
+should give you access to the complete manual.
+ 
+GNU ed 1.22                        July 2025
